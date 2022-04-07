@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DBD Hook Counter</title>
+    <link rel="apple-touch-icon" href="appicon.png">
+    <base target="_top">
+    <style>
+      html, body, div, span, object, iframe,
+      h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+      abbr, address, cite, code,
+      del, dfn, em, img, ins, kbd, q, samp,
+      small, strong, sub, sup, var,
+      b, i,
+      dl, dt, dd, ol, ul, li,
+      fieldset, form, label, legend,
+      table, caption, tbody, tfoot, thead, tr, th, td,
+      article, aside, canvas, details, figcaption, figure, 
+      footer, header, hgroup, menu, nav, section, summary,
+      time, mark, audio, video {
+        margin:0;
+        padding:0;
+        border:0;
+        outline:0;
+        font-size:100%;
+        vertical-align:baseline;
+        background:transparent;
+        box-sizing: border-box;
+      }
+    
+      body {
+        background: #090909;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+      }
+      html {
+        height: -webkit-fill-available;
+      }
+      div.frame {
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+      }
+      .btn {
+        height: 20vh;
+        border-bottom: 1px solid #444444;
+        background-image: url('count0.png');
+        background-position: center center;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      .btn:active {
+        background-color: #262626;
+      }
+      .btn.count0 {
+        background-image: url('count0.png');
+      }
+      .btn.count1 {
+        background-image: url('count1.png');
+      }
+      .btn.count2 {
+        background-image: url('count2.png');
+      }
+    </style>
+  </head>
+  <body>
+    <div class="frame">
+      <div class="btn" data-count="0" ontouchstart="">
+      </div>
+      <div class="btn" data-count="0" ontouchstart="">
+      </div>
+      <div class="btn" data-count="0" ontouchstart="">
+      </div>
+      <div class="btn" data-count="0" ontouchstart="">
+      </div>
+    </div>
+    <script type="text/javascript">
+      window.parent.document.body.overflow = 'hidden';
+      var btn = document.querySelectorAll('.btn');
+      
+      btn.forEach(function(target) {
+        target.addEventListener('click', function() {
+          //target.classList.toggle('selected');
+          target.dataset.count ++;
+          if (target.dataset.count > 2) {
+            target.dataset.count = 0;
+          }
+          switch(target.dataset.count) {
+            case '0':
+              target.className = 'btn count0';
+              break;
+            case '1':
+              target.className = 'btn count1';
+              break;
+            case '2':
+              target.className = 'btn count2';
+              break;
+            default:
+              break;
+          }
+        });
+      })
+
+    </script>
+  </body>
+</html>
